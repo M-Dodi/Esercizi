@@ -34,3 +34,20 @@ def print_numbers(numbers_list):
         print(number)
 
 print_numbers([1,2,3,4,5])
+
+
+#Write a function check_each(), which takes a list of numbers as argument.
+#Using a for loop, iterate through the list.
+#For each number, print “bigger” if it’s bigger than 5, “smaller” if it’s smaller than 5,
+#and “equal” if it’s equal to 5
+
+def check_each(numbers_list):
+    for number in numbers_list:
+        if number > 5:
+            print("Bigger")
+        elif number < 5:
+            print("Smaller")    
+        else:
+            print("Equal") 
+
+check_each([3, 6, 5])          
