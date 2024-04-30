@@ -197,5 +197,145 @@ total_qty = cart.calculate_total()
 print("Total Quantity:", total_qty)
 
 
+#4. Text Analysis:
+#Create a function that reads a text file and counts the number of occurrences of each word.
+#The function should print a report showing the most frequent words and their number of occurrences.
+#You can use a for loop to iterate over the words in the text and a dictionary 
+#to store the occurrences.
+#Implement error handling to handle missing files or other input issues.
+
+"""# Open the file in read mode 
+text = open("sample.txt", "r") 
+
+# Create an empty dictionary 
+d = dict() 
+
+# Loop through each line of the file 
+for line in text: 
+	# Remove the leading spaces and newline character 
+	line = line.strip() 
+
+	# Convert the characters in line to 
+	# lowercase to avoid case mismatch 
+	line = line.lower() 
+
+	# Split the line into words 
+	words = line.split(" ") 
+						
+
+	# Iterate over each word in line 
+	for word in words: 
+		# Check if the word is already in dictionary 
+		if word in d: 
+			# Increment count of word by 1 
+			d[word] += 1
+		else: 
+			# Add the word to dictionary with count 1 
+			d[word] = 1
+
+# Print the contents of dictionary 
+for key in list(d.keys()): 
+	print(key, ":", d[key]) """
 
 
+#5. Inventory Management System:
+#Create a function that defines an item with a code, name, quantity, and price.
+#Create a database or dictionary to store the items in inventory.
+#Implement functions to add, remove, search, and update items in the inventory.
+#Use for loops and conditional statements to manage the various inventory operations.
+
+
+
+def create_item(code, name, quantity, price):
+
+ item = {'code': code,'name': name,'quantity': quantity,'price': price}
+ return item
+
+item1 = create_item(code="A1", name="Banana", quantity=10, price=0.99)
+item2 = create_item(code="B2", name="Apple", quantity=5, price=1.49)
+item3 = create_item(code="C3", name="Orange", quantity=40, price=1.90)
+
+
+inventory_db = {}
+
+def add_item_to_inventory(inventory, item):
+
+ inventory[item['code']] = item
+ return inventory
+
+
+inventory_db = add_item_to_inventory(inventory_db, item1)
+inventory_db = add_item_to_inventory(inventory_db, item2)
+inventory_db = add_item_to_inventory(inventory_db, item3)
+
+for code, item in inventory_db.items():
+    print(f"Code: {code}, Name: {item['name']}, Quantity: {item['quantity']}, Price: ${item['price']:.2f}")
+
+def remove_item_from_inventory(inventory, code):
+
+ if code in inventory:
+        del inventory[code]
+ return inventory
+
+def search_item_in_inventory(inventory, code):
+
+ return inventory.get(code)
+
+searched_item = search_item_in_inventory(inventory_db, "A1")
+if searched_item:
+    print(f"Found item: {searched_item['name']}")
+
+def update_item_in_inventory(inventory, code, quantity=None, price=None):
+
+
+ if code in inventory:
+        if quantity is not None:
+            inventory[code]['quantity'] = quantity
+        if price is not None:
+            inventory[code]['price'] = price
+ return inventory
+
+inventory_db = update_item_in_inventory(inventory_db, "A1", quantity=15)
+
+
+
+for code, item in inventory_db.items():
+    print(f"Code: {code}, Name: {item['name']}, Quantity: {item['quantity']}, Price: ${item['price']:.2f}")
+
+
+
+#6. Password Generator:
+#Create a function that generates a random password with a specified length and 
+#desired character types (lowercase letters, uppercase letters, numbers, symbols).
+#Allow the user to specify the password length and desired character types.
+#Generate and return a random password that meets the user's criteria.
+
+import random
+import string
+
+lowercase_chars = string.ascii_lowercase
+uppercase_chars = string.ascii_uppercase
+digit_chars = string.digits
+symbol_chars = string.punctuation
+
+
+
+def generate_random_password(length, use_lowercase=True, use_uppercase=True, use_digits=True, use_symbols=True):
+
+    all_chars = ""
+    if use_lowercase:
+      all_chars += lowercase_chars
+    if use_uppercase:
+     all_chars += uppercase_chars
+    if use_digits:
+        all_chars += digit_chars
+    if use_symbols:
+        all_chars += symbol_chars
+
+
+    password = "".join(random.choice(all_chars) for _ in range(length))
+    return password
+
+desired_length = 12
+password = generate_random_password(desired_length, use_lowercase=True, use_uppercase=True, use_digits=True, use_symbols=True)
+print(f"Generated password: {password}")
