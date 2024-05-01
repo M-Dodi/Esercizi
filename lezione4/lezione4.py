@@ -320,9 +320,9 @@ symbol_chars = string.punctuation
 
 
 
-def generate_random_password(length, use_lowercase=True, use_uppercase=True, use_digits=True, use_symbols=True):
+def generate_password(length, use_lowercase=True, use_uppercase=True, use_digits=True, use_symbols=True):
 
-    all_chars = ""
+    all_chars = " "
     if use_lowercase:
       all_chars += lowercase_chars
     if use_uppercase:
@@ -336,6 +336,71 @@ def generate_random_password(length, use_lowercase=True, use_uppercase=True, use
     password = "".join(random.choice(all_chars) for _ in range(length))
     return password
 
-desired_length = 12
-password = generate_random_password(desired_length, use_lowercase=True, use_uppercase=True, use_digits=True, use_symbols=True)
+
+desired_length = 10
+password = generate_password(desired_length, use_lowercase=True, use_uppercase=True, use_digits=True, use_symbols=True)
 print(f"Generated password: {password}")
+
+
+#7. Roman Numeral Conversion:
+#Create a function that converts a given integer to its Roman numeral 
+#representation.
+#Handle numbers from 1 to 3999.
+#Use a combination of string manipulation and conditional statements 
+#to build the Roman numeral.
+
+
+class py_solution:
+    def int_to_Roman(self, num):
+        val = [
+            1000, 900, 500, 400,
+            100, 90, 50, 40,
+            10, 9, 5, 4,
+            1
+            ]
+        syb = [
+            "M", "CM", "D", "CD",
+            "C", "XC", "L", "XL",
+            "X", "IX", "V", "IV",
+            "I"
+            ]
+        roman_num = ''
+        i = 0
+        while  num > 0:
+            for _ in range(num // val[i]):
+                roman_num += syb[i]
+                num -= val[i]
+            i += 1
+        return roman_num
+    
+print(py_solution().int_to_Roman(1))
+print(py_solution().int_to_Roman(3999))
+
+
+#8. ATM Machine Simulator:
+#Create a function that simulates an ATM machine.
+#Initialize an account with a starting balance.
+#Allow the user to perform transactions such as deposit, withdraw, and check balance.
+#Validate transactions against the account balance and available funds.
+#Provide appropriate feedback to the user for each transaction.
+
+
+
+
+class BankAccount:
+    def __init__(self, first_name, last_name, starting_balance=0.00):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.balance = starting_balance #USD
+
+    def deposit(self, amount):
+        self.balance += amount
+    
+    def withdraw(self, amount):
+        if amount > self.balance:
+            raise ValueError(
+                'Transaction declined. Insufficient funds. Please deposit some more $$$ first.'
+                )
+        self.balance -= amount
+
+        
