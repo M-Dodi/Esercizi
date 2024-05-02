@@ -10,3 +10,14 @@ def length_of_last_word(s: str) -> int:
        return 0
 input_str = " hello world "   
 print(f"Lungezza: {length_of_last_word(input_str)}")
+
+
+# Dato un itero x , restituisce True se x è palindromo è False altrimenti
+
+def is_palindrome(x):
+    x_str = str(x)
+    return x_str == x_str[::-1]
+
+
+x = 12345
+print(f"L'intero{x} è palindromo? {is_palindrome(x)}")
