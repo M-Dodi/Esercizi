@@ -124,3 +124,52 @@ cane = Animal("cane", 4)
 print(cane)
 
 
+
+
+
+
+class Student:
+
+   all_grade: list[int] = []
+
+   def __init__(self,name: str, grades: list[float] = [])
+      self.name: str = name
+      self.grade = grades
+      self.all_grades += grades
+
+   def bella(self):
+      print (bella)
+
+   @classmethod
+
+
+   #9-1. Restaurant: Make a class called Restaurant. The __init__() method for 
+   #Restaurant should store two attributes: a restaurant_name and a cuisine_type.
+   # Make a method called describe_restaurant() that prints these two pieces of 
+   #information, and a method called open_restaurant() that prints a message 
+   #indicating that the restaurant is open. Make an instance called restaurant f#
+   .rom your class. Print the two attributes individually, and then call both methods
+   
+
+
+class Restaurant:
+
+   def __init__(self,name: str, cuisine_type: str):
+       self.name: str = name
+       self.cuisine_type: str = cuisine_type
+       self.set_number_served: int = self_number_served
+
+       
+   def describe_restaurant(self):
+       print(f'Restaurant(name={self.name},' + f'cuisine={self.cuisine_type})')           
+
+   def open_restaurant(self):
+       print(f'Il restorante {self.name} è aperto')
+
+
+   def set_number_served(self,new_number_served: int):
+        self_number_served = new_number_served
+
+
+      
+
