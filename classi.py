@@ -61,4 +61,57 @@ professore_1: Professore = Professore(name="Flavio", cognome="Giorgi",
 
 
 
+class Animal:
+
+    def __init__(self, species: str, age: int):
+
+       self.specie: str = species
+       self.age: int = age
+
+    def speak(self):
+        pass
+
+
+
+class Person(Animal):
+
+    def __init__(self, name: str, surname: str,age: int, cf: str ):
+        super().__init__(name, "Homo Sapiens", age)
+        
+        self.name: str = name
+        self.surname: str = surname
+        self.age: int = age
+        self.cf: str = cf
+
+    def speak(self) -> str:
+        return f'Ciao mi chiamo {self.name} ed ho {self.age}.'
+
+
+
+
+    def __str__(self) -> str:
+        return f'{self.name.capitalize()} {self.surname.capitalize()}(cf={self.cf})'\
+            +f', age={self.age}'\
+            +f', cf={self.cf}'
+
+
+
+
+
+class Student(Person):
+
+    def __init__(self, name: str, age: int, cf: str):
+        super().__init__(name, age, cf)
+
+
+class Cat(Animal):
+    def __init__(self,specie, name: str, age: int):
+        super().__init__("Felidae", age)
+
+        self.name = name
+
+    def __str__(self) -> str:
+        return f'Cat(name={self.name})'
+
+
 
