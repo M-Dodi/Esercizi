@@ -36,10 +36,9 @@ print(f"{name}, {name_upper}, {name_lower}")
 
 name: str = "George Orwell"
 
-massage: str = f"War is peace, freedom is slavery", {name}
+message: str = "War is peace, freedom is slavery", name # type: ignore
 
-print(massage)
-
+print(message)
 
 
 #  2.6 represent the famous person’s name using a variable called famous_person. 
@@ -240,7 +239,8 @@ print(x)
 x.append(False)#it will append the element at last
 print(x)
 
-y=x.pop(2)#it will pop that element out at given index and remove from that list If no index is specified , list.pop() removes the last item in the list
+y=x.pop(2)#it will pop that element out at given index and remove from that 
+#list If no index is specified , list.pop() removes the last item in the list
 print(y+1)#you can also play with that pop out no
 print("pop",x)
 

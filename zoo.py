@@ -55,29 +55,137 @@ Fra un recinto e l'altro mettete 30 volte il carattere #.
 class Zoo:
 
     def __init__(self, fences: int, zoo_keeper: str):
+        self.fences = []
+        self.zoo_keepers = []
+
+    def add_fence(self, fence):
+        self.fences.append(fence)
+
+    def add_zoo_keeper(self, zoo_keeper):
+        self.zoo_keepers.append(zoo_keeper)    
+    
+    def describe_zoo(self):
+        print("Guardians:")
+        for keeper in self.zoo_keepers:
+            print(f"ZooKeeper(name={keeper.name}, surname={keeper.surname}, id={keeper.id_number})")
+        print("\nFences:")
+        
+        for fence in self.fences:
+            print(f"Fence(area={fence.area}, temperature={fence.temperature}, habitat={fence.habitat})")
+            print("with animals:")
+            for animal in fence.animals:
+                print(f"Animal(name={animal.name}, species={animal.species}, age={animal.age})")
+            print("#" * 30)
+
+    
+class Animal:
+
+    def __int__(self,name: str, species: str,age: int, height: float, width: float,
+                 preferred_habitat: str, health: float):
+        
+        self.name = name
+        self.species = species  
+        self.age = age
+        self.height = height
+        self.width = width
+        self.preferred_habitat = preferred_habitat
+        self.health = round(100 * (1 / age), 3)
+
+
 
 
 class Fence:
+    def __init__(self, area: float, temperature: float, habitat: str):  
+        self.area = area
+        self.temperature = temperature
+        self.habitat = habitat
+        self.animals = []  # Lista degli animali nel recinto
 
-    def __int__(self,area: float, temperature: float, habitat: str)       
+    def add_animal(self, animal):
+
+        if animal.preferred_habitat == self.habitat and self.area >= animal.height * animal.width:
+         self.animals.append(animal)
+            
+         return f"{animal.name} è stato aggiunto al recinto {self.habitat}."
+        
+        else:
+         
+         return f"Impossibile aggiungere {animal.name} al recinto {self.habitat}."
+
+    def remove_animal(self, animal, fence):
+        # Rimuovi animale
+        if animal in fence.animals:
+            self.animals.remove(animal)
+            
+            return f"{animal.name} è stato rimosso dal recinto {self.habitat}."
+        
+        else:
+            return f"{animal.name} non è presente nel recinto {self.habitat}."
 
 
-class Animal:
+    
+    def remaining_area(self):
+        occupied_area = sum(animal.height * animal.width for animal in self.animals)
+        return max(0, self.area - occupied_area)
 
-    def __int__(self,name: str, species: str,age: int, height: float, width: float, preferd_habitat: str, health: float):
+class ZooKeeper:
 
+    def __int__(self,name: str, surname: str, id_number: str): 
+        self.name = name
+        self.surname = surname
+        self.id = id_number
 
+    def feed_animal(self, animal):
+        # Implementa la logica per nutrire l'animale
+        # Incrementa la salute dell'animale del 1% e le dimensioni del 2%
+        animal.health += animal.health * 0.01
+        animal.height += animal.height * 0.02
+        animal.width += animal.width * 0.02
 
+        if self.check_space(animal, Fence):
+            print(f"L'animale {animal.name} è stato nutrito con successo.")
+        else:
+            print(f"Non c'è abbastanza spazio nel recinto per nutrire l'animale {animal.name}.")
+    # Ripristina la salute e le dimensioni dell'animale ai valori precedenti
+            animal.health -= animal.health * 0.01 / 1.01
+            animal.height -= animal.height * 0.02 / 1.02
+            animal.width -= animal.width * 0.02 / 1.02
 
-class Zoo_keeper:
+    def check_space(self, animal, fence):
+        # Calcola l'area totale occupata dagli animali nel recinto
+        total_occupied_area = sum(a.height * a.width for a in fence.animals)
+        # Includi l'area che sarebbe occupata dall'animale dopo essere stato nutrito
+        new_occupied_area = total_occupied_area + (animal.height * animal.width)
+        # Controlla se l'area totale occupata supera l'area del recinto
+        return new_occupied_area <= fence.area
 
-    def __int__(self,name: str, surname: str, id: str): 
+    def clean_fence(self, fence):
+        # Implementa la logica per pulire il recinto
+        remaining_area = fence.remaining_area()
+        
+        if remaining_area == 0:
+         
+            return f"L'area occupata nel recinto {fence.habitat} è {fence.area}."
+        
+        cleaning_time = sum(animal.height * animal.width for animal in fence.animals) / remaining_area
+        
+        return cleaning_time
+    
+    
 
+zoo = Zoo(1,'Lorenzo')
+lorenzo = ('Lorenzo', 'Maggi', '1234')
+zoo.zoo_keepers.append(lorenzo)
+continent_fence = Fence(100, 25, 'Continentale')
+zoo.fences.append(continent_fence)
+scoiattolo = ('Scoiattolo', 'Blabla', 25, 0.5, 0.3, 'Continentale')
+lupo =('Lupo', 'Lupus', 14, 1.5, 0.8, 'Continentale')
+continent_fence.animals.extend([scoiattolo, lupo])
 
-
-
-
-
+# Visualizza informazioni sullo zoo
+zoo.describe_zoo()
+        
+    
 
 
 
