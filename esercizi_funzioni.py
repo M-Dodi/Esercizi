@@ -68,16 +68,20 @@ print(aggrega_voti([{'name': 'Alice', 'voto': 90}, {'nome': 'Bob', 'voto': 75}, 
 #5- Scrivi una funzione che accetti un dizionario di prodotti con i prezzi e restituisca un nuovo 
 #dizionario con solo i prodotti che hanno un prezzo superiore a 20, scontati del 10%.
 
-def filtra_e_mappa(prodotti: dict[str:float]) -> list[str:float]:
+
+def applica_sconto(prodotti):
 
     prodotti_scontati = {}
-
-    for prodoto, prezzo in prodotti.items():
-        if prezzo > 20:
     
-         prodotti_scontati[prodotto] = prezzo * 0.9
-
+    for prodotto, prezzo in prodotti.items():
+        if prezzo > 20:
+            prezzo_scontato = prezzo * 0.9
+            prodotti_scontati[prodotto] = prezzo_scontato
     return prodotti_scontati
+
+prodotti_scontati = applica_sconto(prodotti_originali)
+print(prodotti_scontati)
+
 
 
 
