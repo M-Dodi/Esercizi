@@ -52,30 +52,7 @@ Fra un recinto e l'altro mettete 30 volte il carattere #.
 """
 
 
-class Zoo:
 
-    def __init__(self, fences: int, zoo_keeper: str):
-        self.fences = []
-        self.zoo_keepers = []
-
-    def add_fence(self, fence):
-        self.fences.append(fence)
-
-    def add_zoo_keeper(self, zoo_keeper):
-        self.zoo_keepers.append(zoo_keeper)    
-    
-    def describe_zoo(self):
-        print("Guardians:")
-        for keeper in self.zoo_keepers:
-            print(f"ZooKeeper(name={keeper.name}, surname={keeper.surname}, id={keeper.id_number})")
-        print("\nFences:")
-        
-        for fence in self.fences:
-            print(f"Fence(area={fence.area}, temperature={fence.temperature}, habitat={fence.habitat})")
-            print("with animals:")
-            for animal in fence.animals:
-                print(f"Animal(name={animal.name}, species={animal.species}, age={animal.age})")
-            print("#" * 30)
 
     
 class Animal:
@@ -170,12 +147,35 @@ class ZooKeeper:
         cleaning_time = sum(animal.height * animal.width for animal in fence.animals) / remaining_area
         
         return cleaning_time
+
+
+class Zoo:
+
+    def __init__(self, fences: int, zoo_keepers: None):
+        self.fences = []
+        self.zoo_keepers = zoo_keepers
+
+    def add_fence(self, fence):
+        self.fences.append(fence)
+   
     
+    def describe_zoo(self):
+        print("Guardians:")
+        for keeper in self.zoo_keepers:
+            print(f"ZooKeeper(name={ZooKeeper.name}, surname={ZooKeeper.surname}, id={ZooKeeper.id_number})")
+        print("\nFences:")
+        
+        for fence in self.fences:
+            print(f"Fence(area={fence.area}, temperature={fence.temperature}, habitat={fence.habitat})")
+            print("with animals:")
+            for animal in fence.animals:
+                print(f"Animal(name={animal.name}, species={animal.species}, age={animal.age})")
+            print("#" * 30)
+
     
 
-zoo = Zoo(1,'Lorenzo')
-lorenzo = ('Lorenzo', 'Maggi', '1234')
-zoo.zoo_keepers.append(lorenzo)
+zoo = Zoo(fences=[continent_fence], zoo_keepers=[lorenzo])
+lorenzo = ZooKeeper('Lorenzo', 'Maggi', '1234')
 continent_fence = Fence(100, 25, 'Continentale')
 zoo.fences.append(continent_fence)
 scoiattolo = ('Scoiattolo', 'Blabla', 25, 0.5, 0.3, 'Continentale')
@@ -183,7 +183,8 @@ lupo =('Lupo', 'Lupus', 14, 1.5, 0.8, 'Continentale')
 continent_fence.animals.extend([scoiattolo, lupo])
 
 # Visualizza informazioni sullo zoo
-zoo.describe_zoo()
+if __name__ == "__main__":
+    zoo.describe_zoo()
         
     
 
