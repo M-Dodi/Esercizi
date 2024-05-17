@@ -39,8 +39,8 @@ class Professore(Dipendente):
         
         super().__init__(name, cognome, data_di_nascita, genere, ore_lavorate)
 
-        self.materi_insegnata: str = materia_insegnata
-        self.ore_di_lezzione: str = ore_di_lezione
+        self.materia_insegnata: str = materia_insegnata
+        self.ore_di_lezione: str = ore_di_lezione
 
     def __str__(self)->
 

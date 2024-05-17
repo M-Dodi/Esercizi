@@ -120,3 +120,12 @@ def update_contact(contatto: dict, name: str, email: str =None, telefono: int=No
 contatto1 = update_contact(contatto1,'Marco Cascio' telefono=33333333)
 
 print(contatto1)
+
+
+
+
+
+
+
+
+
