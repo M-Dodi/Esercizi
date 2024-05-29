@@ -99,24 +99,6 @@ print(professore_1.ore_di_lezione)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Person:
     
     def __init__(self, 
@@ -287,3 +269,172 @@ except ValueError:
 #print(person_1)
 
 queue: list[Person] = [person_1]
+
+
+
+
+
+from abc import ABC, abstractmethod
+
+class AbcAnimal(ABC):
+
+
+    @abstractmethod
+    def verso():
+
+        pass
+
+    @abstractmethod
+    def movimento(self):
+
+        pass
+
+
+
+class Cane(AbcAnimal):
+
+    def __init__(self, nome: str) -> None:
+        super(). __init__()
+   
+        self.nome: str = nome
+        self.velocità: float = 10.0 #m/s
+
+
+    def verso(self):
+        return print("Bau!")
+
+    def movimento(self, t: int):
+        return self.velocità * t
+        
+
+
+
+cane_1: Cane = Cane(nome="Pluto")        
+cane_1.verso()
+cane_1.movimento(t=10)
+
+class Gatto(AbcAnimal):
+
+    def __init__(self, nome: str) -> None:
+        super(). __init__()
+
+        self.nome = nome
+
+    def verso(self) :
+        return print("Miao")  
+
+
+class ContoBancario:
+
+    total_accounts = 0
+    definizione: str = 'Conto Bancario'
+    def __init__(self,iban, saldo, nome):
+
+        self.iban = iban
+        self.nome = nome
+        self.saldo = saldo
+
+        ContoBancario.total_accounts += 1
+   
+    def  deposito(self, importo):
+        self.saldo += importo
+        print(f'{importo}depositato. Il nuovosaldo è:{self.saldo}')
+
+    def prelievo(self, importo):
+        self.saldo -= importo
+        print(f'{importo} prelevato. Il nuovo saldo è {self.saldo}')    
+
+
+    @classmethod
+    def get_total_accounts(cls):
+        print(f'Account totali creati: {cls.total_accounts}')   
+
+
+    @classmethod
+    def get_type(cls):
+            print(f'Type{cls.definizione}')
+    @staticmethod
+    def valida_account(iban):     
+
+        if isinstance(iban, int) and len(str(iban)) == 10:
+            print('iban valido')
+            return True
+
+        else:
+            print('iban non valido')
+            return False
+
+account1 = ContoBancario(1234567890, 0, 'Alice')            
+account2 = ContoBancario(9876543210, 1000, 'Bob')       
+account1.deposito(500)
+account1.prelievo(200)
+
+account2.deposito(200)
+account2.deposito(150)
+
+ContoBancario.get_total_accounts()
+
+ContoBancario.valida_account(1234567890)
+ContoBancario.valida_account(3456789097)
+
+
+from typing import Any
+
+class Banca:
+
+    def __init__(self,nome: str,simbolo: str) -> None:
+        self.nome: str = nome
+        self.simbolo: str = simbolo
+        self.lista_filiali: list[Filiale] = []
+
+    def numero_filiali(self) -> int:
+        return len(self.lista_filiali)
+
+    def aggiungi_filiale(self, filiale: Filiale):
+
+        if self.simbolo in filiale.codice:
+
+            self.lista_filiali.append(filiale)
+        else:
+            raise ValueError  ("Non è la stessa banca")  
+
+
+class Filiale:
+ 
+    filiali_create: int = 0
+    @classmethod
+    def totale_filiali_create(cls) -> int:
+        return cls.filiali_create
+
+
+    def __init__(self,codice: str, indirizzo: str,banca: Banca ) -> None:
+        self.codice = codice
+        self.indirizzo = indirizzo
+        self.banca = banca
+
+
+unicredit: Banca = Banca(nome="Unicredit", simbolo="UCG")
+intesa: Banca = Banca(nome="Intesa San Paolo", simbolo="ISP")
+filiale_unicredit_1: Filiale = Filiale(codice="UCG01", indirizzo="Via Sierra Nevada 01,Roma",
+                                       banca=unicredit)
+filiale_intesa_1 = Filiale = Filiale(codice="ISP01", indirizzo= "Via Roma60,Roma", banca=intesa) # type: ignore
+
+
+unicredit.lista_filiali.append(filiale_unicredit_1)
+intesa.lista_filiali.append(filiale_intesa_1)
+print(filiale_unicredit_1.banca.nome)
+print(intesa.numero_filiali())
+print(Filiale.totale_filiali_create())
+
+
+
+
+
+
+
+
+
+
+
+
+
