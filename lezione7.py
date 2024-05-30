@@ -133,6 +133,9 @@ def move_hare():                 # funzione per muovere la lepre
     elif 6 <= movement <= 8:
         pos_hare += 1
 
+
+
+
     else:      
         pos_hare -= 2
         if pos_hare < 0:
@@ -141,7 +144,7 @@ def move_hare():                 # funzione per muovere la lepre
 print("'BANG !!!!! AND THEY'RE OFF !!!!!'")   # partenza
 
 
-while pos_tortoise < 70 and pos_tortoise < 70:    # simuliamo gara in movimento
+while pos_tortoise <= 70 and pos_tortoise <= 70:    # simuliamo gara in movimento
       
     move_tortoise()
     move_hare()
