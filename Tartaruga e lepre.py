@@ -95,18 +95,46 @@ quadrati (es: 5, 3, 10). I bonus sono rappresentati da un dizionario che mappa l
 
 import random
 
-cirquite = ['_'] * 70  # lungezza circuito
+#Costanti
+Lungezza_Corsia = 70
+Cambio_Condizioni = 10
+Energia_Iniziale = 100
+Ostacoli = {15: -3, 30: -5, 45: -7}
+Bonus = {10: 5, 25: 3, 50: 10}
 
-pos_tortoise = 1             # inizializazzione dal punto 1
-pos_hare = 1
+#Stato iniziale
+tortoise = 1            
+hare = 1
+tick = 0
+condition = "soleggiato"
+energy_tort = Energia_Iniziale
+energy_hare = Energia_Iniziale
 
-def move_tortoise():                    #funzione per muovere la tartaruga
-    global pos_tortoise
+
+#Posizione corrente nella pista
+def show_position(tortoise, hare):
+
+    cirquite = ['_'] * Lungezza_Corsia  # lungezza circuito
+    pos_tortoise = min(tortoise, Lungezza_Corsia)
+    pos_hare = min(hare, Lungezza_Corsia)
+    if pos_tortoise == pos_hare:
+        cirquite[pos_tortoise-1] = "OUCH!!!"
+    else:
+        cirquite[pos_tortoise-1] = 'T'
+        cirquite[pos_hare-1] = 'H'
+
+def move_tortoise(tortoise, condition, energy_tort):                    #funzione per muovere la tartaruga
     movement = random.randint(1, 10)    # generiamo numeri casuali
-
-    if  1 <= movement <= 5:
-        pos_tortoise += 3
     
+    if condition == "pioggia":
+        mod_tortoise = -1
+    else:
+        mod_tortoise = -1
+
+    if  1 <= movement <= 5 and energy_tort >= 5:
+        pos_tortoise += 3 + mod_tortoise
+        energy_tort -= 5
+        
     if  6 <= movement <= 7:
         pos_tortoise -= 6
         if pos_tortoise < 0:
