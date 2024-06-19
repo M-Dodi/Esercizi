@@ -1,11 +1,11 @@
 reader = open("esempio.txt", encoding="utf-8")
 
-
-# metodo veloce--------
+"""
+#### metodo veloce--------
 with open(f"files/esempio.txt") as f:
         print(f)
-#---------------------
-
+####---------------------
+"""
 
 
 try:
