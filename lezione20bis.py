@@ -23,7 +23,7 @@ Per il test, si creino almeno due oggetti di tipo PagamentoContanti e due di tip
 
 class Pagamento:
 
-    def __init__(self):
+    def __init__(self) -> float:
         self.importo = 0.0
 
     def set_importo(self, importo: float):
@@ -33,7 +33,7 @@ class Pagamento:
         else:
             print("L'importo deve essere un valore positivo di tipo float")     
 
-    def get_importo(self):
+    def get_importo(self) -> float:
         return self.importo
     
     def PaymentDetail(self):
@@ -64,14 +64,14 @@ class PagamentoContanti(Pagamento):
         for moneta in monete:
             quantita = int(importo_restante / moneta)
             if quantita > 0:
-                pezzi[f"{moneta}"] = quantita
+                pezzi[f"{moneta} euro"] = quantita
                 importo_restante -= quantita * moneta
-
+        
 
 
         return pezzi 
     
-    
+
 importo_da_pagare = 1234.56
 pagamento = PagamentoContanti(importo_da_pagare)
 pezzi_necessari = pagamento.InPezziDa()
