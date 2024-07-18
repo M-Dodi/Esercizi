@@ -129,31 +129,54 @@ def move_tortoise(tortoise, condition, energy_tort):                    #funzion
     if condition == "pioggia":
         mod_tortoise = -1
     else:
-        mod_tortoise = -1
+        mod_tortoise = 0
 
     if  1 <= movement <= 5 and energy_tort >= 5:
-        pos_tortoise += 3 + mod_tortoise
+        tortoise += 3 + mod_tortoise
         energy_tort -= 5
-        
-    if  6 <= movement <= 7:
-        pos_tortoise -= 6
-        if pos_tortoise < 0:
-            pos_tortoise = 0
+
     else:
-        pos_tortoise += 1
+        energy_tort += 10
+        energy_tort = min(energy_tort, Energia_Iniziale)
+
+    if  6 <= movement <= 7 and energy_tort >= 10:
+        pos_tortoise -= 6 + mod_tortoise
+        tortoise = max(1, tortoise)
+        energy_tort -= 10
+
+    else:
+        energy_tort += 10:
+        energy_tort = min(energy_tort, Energia_Iniziale)
+    
+    if 8 <= movement <= 10 and energy_tort >= 3:
+        tortoise += 1 + mod_tortoise
+        energy_tort -= 3
+
+    else:
+        energy_tort += 10
+        energy_tort = min(energy_tort, Energia_Iniziale)
+
+#Ostacoli
+    if tortoise in Ostacoli:
+        tortoise += Ostacoli(tortoise)
+
+    it tortoise in Bonus:
+        tortoise += Bonus(tortoise)
+    
+    return tortoise
 
 
-def move_hare():                 # funzione per muovere la lepre
-    global pos_hare
+def move_hare(hare, condition, energy_hare):                 # funzione per muovere la lepre
     movement = random.randint(1, 10)
-
+    if condition == "pioggia":
+        mod_hare = -2
     if movement <= 2:
         pass
 
     elif movement <= 4:
         pos_hare += 9
 
-    elif movement == 5:
+    elif movement == 5
         pos_hare -= 12
         if pos_hare < 0:
             pos_hare = 0

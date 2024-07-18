@@ -57,7 +57,7 @@ Fra un recinto e l'altro mettete 30 volte il carattere #.
     
 class Animal:
 
-    def __int__(self,name: str, species: str,age: int, height: float, width: float,
+    def __init__(self,name: str, species: str,age: int, height: float, width: float,
                  preferred_habitat: str, health: float):
         
         self.name = name
